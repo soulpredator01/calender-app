@@ -7,7 +7,7 @@ const Sidebar = ({ show, onHide, onAddEvent, onEditEvent, onDeleteEvent, selecte
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [type, setType] = useState('work');
+  const [type, setType] = useState('');
 
   useEffect(() => {
     if (selectedEvent) {
@@ -21,7 +21,7 @@ const Sidebar = ({ show, onHide, onAddEvent, onEditEvent, onDeleteEvent, selecte
       setDate('');
       setStartTime('');
       setEndTime('');
-      setType('')
+      setType('work')
     }
   }, [selectedEvent]);
 
