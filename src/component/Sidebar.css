@@ -76,6 +76,15 @@
     margin-left: 10px;
   }
 
+  .btn-show{
+    background-color: orangered;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color:white;
+    margin-left: 10px;
+  }
+
   #select {
     width: 98%;
     padding: 8px;

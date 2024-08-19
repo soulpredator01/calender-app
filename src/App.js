@@ -26,11 +26,6 @@ const App = () => {
     setEvents([...events, newEvent]);
     setShowOffcanvas(false);
   };
-  
-  useEffect(()=> {
-    localStorage.setItem("events", JSON.stringify(events));
-  }, [setEvents, events]);
-
  
 
   const handleEditEvent = (updatedEvent) => {
@@ -43,15 +38,10 @@ const App = () => {
     setShowOffcanvas(false);
   };
 
-  // const handleSelectEvent = (event) => {
-  //   setSelectedEvent(event);
-  //   setShowOffcanvas(true);
-  // };
-
-  const eventDetailsPage = (id) => {
-    navigate(`/event/${id}`);
-    // console.log(id);
-  }
+  const handleSelectEvent = (event) => {
+    setSelectedEvent(event);
+    setShowOffcanvas(true);
+  };
 
   return (
       <div className="calendar-container">
@@ -74,6 +64,7 @@ const App = () => {
           onEditEvent={handleEditEvent}
           onDeleteEvent={handleDeleteEvent}
           selectedEvent={selectedEvent}
+          
         />
 
         <Routes>
@@ -88,14 +79,12 @@ const App = () => {
                 endAccessor="end"
                 style={{ height: "85vh" }}
                 onSelectEvent={(event) => {
-                  eventDetailsPage(event.id)
-                  console.log(event)
-                  setEvent(event);
+                  handleSelectEvent(event)
                 }}
               />
             }
           />
-          <Route path="/event/:id" element={<EventDetails event={event} />} />
+          <Route path="/event/:id" element={<EventDetails event={selectedEvent} />} />
         </Routes>
       </div>
   );

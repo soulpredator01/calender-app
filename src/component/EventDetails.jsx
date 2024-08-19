@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import "./EventDetails.css"
 
 const EventDetails = ({ event }) => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const EventDetails = ({ event }) => {
 
   return (
     <div className="event-details">
-      <h2>{event?.title}</h2>
+      <h2>Title: {event?.title}</h2>
       <p><strong>Date:</strong> {new Date(event?.start).toLocaleDateString()}</p>
       <p><strong>Start Time:</strong> {new Date(event?.start).toLocaleTimeString()}</p>
       <p><strong>End Time:</strong> {new Date(event?.end).toLocaleTimeString()}</p>

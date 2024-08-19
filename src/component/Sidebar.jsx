@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css'; // Import your CSS file for styling
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ show, onHide, onAddEvent, onEditEvent, onDeleteEvent, selectedEvent }) => {
   const [title, setTitle] = useState('');
@@ -8,6 +9,7 @@ const Sidebar = ({ show, onHide, onAddEvent, onEditEvent, onDeleteEvent, selecte
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [type, setType] = useState('');
+  const navgiate = useNavigate();
 
   useEffect(() => {
     if (selectedEvent) {
@@ -64,6 +66,11 @@ const Sidebar = ({ show, onHide, onAddEvent, onEditEvent, onDeleteEvent, selecte
     }
   };
 
+  const detailPage = () => {
+    navgiate(`/event/${selectedEvent.id}`);
+    console.log(selectedEvent);
+  }
+
   return (
     <div className={`sidebar ${show ? 'show' : ''}`}>
       <div className="sidebar-content">
@@ -103,7 +110,10 @@ const Sidebar = ({ show, onHide, onAddEvent, onEditEvent, onDeleteEvent, selecte
             <option value="personal">Personal</option>
           </select>
           <button className="btn btn-primary" onClick={handleSubmit}>{selectedEvent ? 'Update' : 'Submit'}</button>
-          {selectedEvent && <button className="btn btn-danger" onClick={handleDelete}>Delete</button>}
+          {selectedEvent && <>
+            <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+            <button className='btn btn-show' onClick={detailPage}>Show Details</button>
+          </>}
         </div>
       </div>
     </div>
